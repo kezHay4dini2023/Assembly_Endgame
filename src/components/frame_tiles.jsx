@@ -4,8 +4,9 @@ import Tile from "./alphabet_tile"
 
 export default function Aplhabet_tiles(props) {
 
+
     const latinAlphabets = props.alphabet.map( alpha => 
-        <Tile alphabet={alpha} />
+        <Tile alphabet={alpha} id={props.id} clickedletter={props.clickedletter}/>
 
     )
 

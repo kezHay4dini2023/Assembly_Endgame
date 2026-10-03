@@ -8,8 +8,6 @@ import { useEffect } from "react"
 
 export default function MainBody() {
     const [alphabet, setAlphabet] = useState(generateAtoZtile())
-    
-    
 
     function generateAtoZtile() {
         return new Array(26).fill(0)
@@ -17,6 +15,11 @@ export default function MainBody() {
             String.fromCharCode( i + 65)
     
     )
+    }
+
+    function clickedletter(event) {
+        const id = event.currentTarget.id
+        console.log(id); 
     }
 
     // useEffect( () => {
@@ -35,7 +38,7 @@ export default function MainBody() {
         <Comments />
         <Frameworks />
         <Fills />
-        <Aplhabet_tiles alphabet={alphabet} />
+        <Aplhabet_tiles alphabet={alphabet} clickedletter={clickedletter}/>
         </main>
     )
 }
