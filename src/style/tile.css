@@ -18,4 +18,10 @@
     background-color: #fdb121;
     color: black;
     
+    cursor: pointer;
+}
+
+.tile_letter:active {
+    background-color: #e69f1d;
+    border: 2px solid white;
 }
