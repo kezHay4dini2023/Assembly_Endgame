@@ -4,8 +4,8 @@ import '../style/fills.css'
 export default function Fills (props) {
     
     const Fillings = props.mysteryWord.map(
-        filling => 
-            <FillTiles letter = {filling}/>
+        filling =>  
+             <FillTiles letter = {filling.value} isShown = {filling.isShown}/> 
     )
     
     return (

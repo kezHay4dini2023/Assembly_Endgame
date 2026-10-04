@@ -10,7 +10,7 @@ export default function MainBody() {
     const [alphabet, setAlphabet] = useState(generateAtoZtile())
     const [mysteryWord, setmysteryWord] = useState(slicedupword("astonishing"))
 
-    console.log(alphabet)
+    console.log(mysteryWord)
     function generateAtoZtile() {
         return new Array(26).fill(0)
         .map((_, i) => 
@@ -25,7 +25,14 @@ export default function MainBody() {
     function slicedupword(word = "hello") {
         const spliced = word.split("")
 
-        return spliced
+        return new Array(spliced.length).fill(0)
+        .map((_, i) => 
+            ({
+            value: spliced[i], 
+            isShown: false
+            })
+    
+    )
     }
 
     function clickedletter(event) {
