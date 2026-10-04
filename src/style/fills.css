@@ -7,7 +7,13 @@
 .fillTile {
 
     background-color: #2c2c2c;
-    padding: 15px;
+    width: 20px;
+    height: 30px;
+
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     box-shadow: 0 1px 0px white;
 }

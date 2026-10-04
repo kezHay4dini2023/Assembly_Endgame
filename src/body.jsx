@@ -8,18 +8,40 @@ import { useEffect } from "react"
 
 export default function MainBody() {
     const [alphabet, setAlphabet] = useState(generateAtoZtile())
+    const [mysteryWord, setmysteryWord] = useState(slicedupword("astonishing"))
 
+    console.log(alphabet)
     function generateAtoZtile() {
         return new Array(26).fill(0)
         .map((_, i) => 
-            String.fromCharCode( i + 65)
+            ({
+            value: String.fromCharCode( i + 65),
+            isHeld: false
+            })
     
     )
     }
 
+    function slicedupword(word = "hello") {
+        const spliced = word.split("")
+
+        return spliced
+    }
+
     function clickedletter(event) {
-        const id = event.currentTarget.id
-        console.log(id); 
+        const currentkey = event.currentTarget
+        const isHeld = event.currentTarget.isheld
+        const value = event.currentTarget.value
+        console.log(value); 
+
+        if (!isHeld) {
+            currentkey.style.backgroundColor = "yellowgreen";
+            event.currentTarget.isheld = true
+        } else {
+            currentkey.style.backgroundColor = "#fdb121";
+            event.currentTarget.isheld = false
+        }
+
     }
 
     // useEffect( () => {
@@ -37,7 +59,7 @@ export default function MainBody() {
         </div>
         <Comments />
         <Frameworks />
-        <Fills />
+        <Fills mysteryWord = {mysteryWord}/>
         <Aplhabet_tiles alphabet={alphabet} clickedletter={clickedletter}/>
         </main>
     )
