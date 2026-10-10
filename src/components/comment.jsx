@@ -1,9 +1,12 @@
 import '../style/comment.css'
 
-export default function Comments() {
+export default function Comments(props) {
     return(
-        <div className="comment">
-            JUST DO IT! NA PARANG DL NAGHAHANAP!
+        <div className="comment" style={{
+            color: props.coloring
+        }} id='commenting'>
+           { !props.lost && <> {props.commented} </>} 
+            {props.lost && <> GAME OVER 👾👾 </>}
         </div>
     )
 }

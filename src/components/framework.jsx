@@ -7,7 +7,9 @@ export default function Framework(props) {
             backgroundColor: props.bcolor,
             color: props.color
         }
-        }>
+        }
+        key={props.name}
+        >
             {props.name}
         </span>
     )
