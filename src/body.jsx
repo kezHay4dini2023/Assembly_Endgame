@@ -61,6 +61,20 @@ export default function MainBody() {
     const [mysteryWord, setmysteryWord] = useState(slicedupword("astonishing"))
     const [assembly, setAssembly] = useState(assembling); 
     const [lost, setlost] = useState(false);
+    const [win, setwin] = useState(false);
+    const [redo, setredo] = useState(false); 
+
+    function resetGame() {
+        setcommented("JUST DO IT! NA PARANG DL NAGHAHANAP!")
+        setTotalwrongs(0)
+        setAlphabet(generateAtoZtile())
+        setmysteryWord(slicedupword("astonishing"))
+        setAssembly(assembling)
+        setlost(false)
+        setwin(false)
+        setredo(false)
+        document.getElementById("commenting").style.backgroundColor = "yellowgreen";
+    }
 
     console.log(`color: ${assembly[0].name}`)
     function assembling() {
@@ -138,6 +152,18 @@ export default function MainBody() {
             commentId.style.backgroundColor = "red"; 
             setlost(true);
             console.log("LOSTTT");
+            setredo(true); 
+        }
+
+        const winnerChecker = isCorrect && mysteryWord.every(letter => letter.isShown || letter.valued.toUpperCase() === value)
+
+        console.log(mysteryWord)
+
+        if (winnerChecker) {
+            commentId.style.backgroundColor = "yellowgreen"; 
+            setwin(true);
+            console.log("WINNER");
+            setredo(true); 
         }
 
 
@@ -161,10 +187,13 @@ export default function MainBody() {
         <div>
         Guess the word within 8 attempts to keep the programming world safe from the assembly
         </div>
-        <Comments lost={lost} commented={commented}/>
+        <Comments lost={lost} win={win} commented={commented}/>
         <Frameworks assembly={assembly}/>
         <Fills mysteryWord = {mysteryWord}/>
-        <Aplhabet_tiles alphabet={alphabet} clickedletter={clickedletter}/>
+        <Aplhabet_tiles alphabet={alphabet} clickedletter={clickedletter}
+        redo={redo}
+        resetGame={resetGame}
+        />
         </main>
     )
 }

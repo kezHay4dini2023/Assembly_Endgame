@@ -16,10 +16,18 @@ export default function Aplhabet_tiles(props) {
     )
 
     return (
-        <div className="frameTile">
-            {latinAlphabets}
+        <>
+            {!props.redo && 
+            <div className="frameTile">
+                {latinAlphabets}
+            </div>
+            }
             
-        </div>
+        {props.redo && <button
+            className='redo-button'
+            onClick={props.resetGame}
+            > REDO </button>}
+        </>
 
     )
 }

@@ -25,3 +25,21 @@
     background-color: #e69f1d;
     border: 2px solid white;
 }
+
+.redo-button {
+    background-color: violet;
+    color: black;
+    border: none;
+    margin-top: 10px;
+
+    border-radius: 5px;
+    padding-inline: 25px;
+    padding-block: 10px;
+
+    cursor: pointer;
+}
+
+.redo-button:active {
+    background-color: rgb(185, 99, 185);
+    border: 1px solid white;
+}
