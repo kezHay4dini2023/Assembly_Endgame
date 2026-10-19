@@ -26,7 +26,7 @@ export default function Aplhabet_tiles(props) {
         {props.redo && <button
             className='redo-button'
             onClick={props.resetGame}
-            > REDO </button>}
+            > PLAY AGAIN </button>}
         </>
 
     )

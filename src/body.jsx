@@ -6,6 +6,7 @@ import Comments from "./components/comment"
 import { useState } from "react"
 import { useEffect } from "react"
 import { nanoid } from "nanoid"
+import data from "./words/words_5000s.json"
 
 const assemblysList = ["HTML", "CSS", "JavaScript", "React", "TypeScript", "Node.js", "Python", "Ruby", "Assembly"]
 const bcolors = [
@@ -55,20 +56,28 @@ const downfall = [
 ];
 
 export default function MainBody() {
-    const [commented, setcommented] = useState("JUST DO IT! NA PARANG DL NAGHAHANAP!")
+    const [commented, setcommented] = useState("JUST DO IT!")
     const [totalwrongs, setTotalwrongs] = useState(0)
     const [alphabet, setAlphabet] = useState(generateAtoZtile())
-    const [mysteryWord, setmysteryWord] = useState(slicedupword("astonishing"))
+    const [mysteryWord, setmysteryWord] = useState(() => openUP(slicedupword(randomWord())))
     const [assembly, setAssembly] = useState(assembling); 
     const [lost, setlost] = useState(false);
     const [win, setwin] = useState(false);
     const [redo, setredo] = useState(false); 
+    
+
+    function randomWord() {
+        const randoming = Math.floor(Math.random() * 5000)
+        const chosenWord = data["words"][randoming]
+
+        return chosenWord
+    }
 
     function resetGame() {
-        setcommented("JUST DO IT! NA PARANG DL NAGHAHANAP!")
+        setcommented("JUST DO IT! ")
         setTotalwrongs(0)
         setAlphabet(generateAtoZtile())
-        setmysteryWord(slicedupword("astonishing"))
+        setmysteryWord(() => openUP(slicedupword(randomWord())))
         setAssembly(assembling)
         setlost(false)
         setwin(false)
@@ -76,8 +85,8 @@ export default function MainBody() {
         document.getElementById("commenting").style.backgroundColor = "yellowgreen";
     }
 
-    console.log(`color: ${assembly[0].name}`)
     function assembling() {
+        
         return new Array(assemblysList.length).fill(0).map(
             (_, i) =>
             (
@@ -121,8 +130,6 @@ export default function MainBody() {
         const value = event.currentTarget.value
         const commentId = document.getElementById("commenting")
 
-        console.log(value); 
-
         const isCorrect = mysteryWord.some(
         letter => letter.valued.toUpperCase() === value
     );
@@ -157,7 +164,6 @@ export default function MainBody() {
 
         const winnerChecker = isCorrect && mysteryWord.every(letter => letter.isShown || letter.valued.toUpperCase() === value)
 
-        console.log(mysteryWord)
 
         if (winnerChecker) {
             commentId.style.backgroundColor = "yellowgreen"; 
@@ -175,6 +181,27 @@ export default function MainBody() {
                 letter
             )
         )
+    }
+
+    function openUP(word) {
+        const randoming = Math.floor(Math.random() * word.length)
+        const lettered = word[randoming].valued.toUpperCase()
+        
+            setAlphabet(prev =>
+                        prev.map(tile =>
+                            tile.value === lettered
+                                ? { ...tile, isHeld: true }
+                                : tile
+                        )
+                    );
+        
+            return word.map(
+                letter => 
+                letter.valued.toUpperCase() === lettered ?
+                {...letter, isShown: true} : 
+                letter
+            )
+        
     }
 
     

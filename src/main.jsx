@@ -5,7 +5,7 @@ import App from './App.jsx'
 import MainBody from './body.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <>
     <MainBody /> 
-  </StrictMode>,
+  </>,
 )
